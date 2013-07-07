@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.mcme</groupId>
     <artifactId>MCME-Loth-Pack</artifactId>
-    <version>0.74</version>
+    <version>1.00</version>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <directory>src/</directory>
@@ -15,6 +15,7 @@
                     <outputDirectory>/var/www/html/dump/lothpack/${project.version}/</outputDirectory>
                     <descriptors>
                         <descriptor>assembly/zip.xml</descriptor>
+                        <descriptor>assembly/zip-extras.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
