@@ -7,4 +7,5 @@ del %newdir%\Loth-DEBUG\*.* /s /q
 xcopy /y/s %oldDir%\src\main\meta\* %newDir%\Loth-DEBUG
 xcopy /y/s %oldDir%\src\main\pack\* %newDir%\Loth-DEBUG\assets\minecraft
 xcopy /y/s %oldDir%\MCME-UI\src\main\pack\*.* %newDir%\Loth-DEBUG\assets\minecraft /exclude:debug-excludes.txt
+xcopy /y/s %oldDir%\MCME-Aural-Experience\src\main\pack\*.* %newDir%\Loth-DEBUG\assets\minecraft
 pause
