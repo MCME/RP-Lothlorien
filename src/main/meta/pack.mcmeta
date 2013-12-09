@@ -1,6 +1,6 @@
 {
   "pack": {
     "pack_format": 1,
-    "description": "Minecraft Middle Earth"
+    "description": "MCME Lothlorien ${project.version}"
   }
 }
