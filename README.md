@@ -1,5 +1,11 @@
 # RP-Lothlorien
-The Lothlorien resourcepack.Created by members of the Minecraft Middle-Earth community.
+The official repository for MCME's Lothlorien pack.
+Created by members of the Minecraft Middle-Earth community.
+
+THIS IS A RESOURCEPACK IN DEVELOPMENT AND THEREFORE SHOULD NOT BE DOWNLOADED AND USED ON OUR SERVERS.
+RESOURCEPACKS HERE ARE SUBJECT TO A QUALITY CONTROL PROCESS BEFORE THEY CAN BE USED.
+ONLY USE THE RESOURCEPACKS WHICH ARE AUTOMATICALLY SUPPLIED TO YOU BY THE SERVER, OR THE ONES
+AVAILABLE AT http://www.mcmiddleearth.com/resources/categories/official-resourcepacks.9/
 
 >Website: http://www.mcmiddleearth.com
 
