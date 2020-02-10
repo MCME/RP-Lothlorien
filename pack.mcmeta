@@ -1,6 +1,9 @@
 {
   "pack": {
-    "pack_format": 3,
-    "description": "MCME Lothlorien December 17th, 2016"
+    "pack_format": 4,
+    "description": "MCME Lothlorien 1.1 snapshot 2"
+  },
+  "meta": {
+    "game_version": "1.14"
   }
 }
