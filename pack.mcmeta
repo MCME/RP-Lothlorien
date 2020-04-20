@@ -1,9 +1,9 @@
 {
   "pack": {
-    "pack_format": 4,
-    "description": "MCME Lothlorien 1.1"
+    "pack_format": 5,
+    "description": "MCME Lothlorien 1.2"
   },
   "meta": {
-    "game_version": "1.14"
+    "game_version": "1.15"
   }
 }
