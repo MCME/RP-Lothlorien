@@ -1,12 +1,22 @@
 {
   "pack": {
     "pack_format": 88,
-    "supported_formats": [15, 255],
+    "supported_formats": [
+      15,
+      255
+    ],
     "min_format": 15,
     "max_format": 255,
     "description": "MCME Lothlorien v1.3.11"
   },
   "meta": {
     "game_version": "26.2"
+  },
+  "sodium": {
+    "ignored_shaders": [
+      "fog.glsl",
+      "terrain.fsh",
+      "terrain.vsh"
+    ]
   }
 }
