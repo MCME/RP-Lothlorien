@@ -58,6 +58,7 @@ out vec3 fluidWorld;
 // occlusion - for its shores
 out vec4 waterLights;
 out vec4 waterWeights;
+out vec4 waterHeights;
 
 #define Sampler0 u_BlockTex
 #moj_import <minecraft:objmc_tools.glsl>
@@ -99,7 +100,7 @@ void main() {
     vec3 translation = u_RegionOffset + _get_draw_translation(_draw_id);
     Pos = _vert_position + translation;
     fluidWorld = MCME_WORLD_POS_64;
-    waterCorner(gl_VertexID, _vert_color.rgb, waterLights, waterWeights);
+    waterCorner(gl_VertexID, _vert_color.rgb, Pos.y, waterLights, waterWeights, waterHeights);
 
     vertexColor = _vert_color;
     lightColor = texture(u_LightTex, _vert_tex_light_coord);

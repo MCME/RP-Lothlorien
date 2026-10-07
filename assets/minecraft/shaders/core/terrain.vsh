@@ -40,6 +40,7 @@ out vec3 fluidWorld;
 // water (water.glsl): each corner's brightness, for its shores
 out vec4 waterLights;
 out vec4 waterWeights;
+out vec4 waterHeights;
 
 #moj_import <objmc_tools.glsl>
 #moj_import <minecraft:water_corner.glsl>
@@ -76,7 +77,7 @@ void main() {
     // END COMMENTED 1.21.4 BLOCK-LIGHTING DEFAULTS
     Pos = Position + (ChunkPosition - CameraBlockPos) + CameraOffset;
     fluidWorld = MCME_WORLD_POS_64;
-    waterCorner(gl_VertexID, Color.rgb, waterLights, waterWeights);
+    waterCorner(gl_VertexID, Color.rgb, Pos.y, waterLights, waterWeights, waterHeights);
     vertexColor = Color;
     lightColor = minecraft_sample_lightmap(Sampler2, UV2);
     texCoord = UV0;

@@ -42,19 +42,28 @@ struct WaterShore {
     vec2 dx, dy;      // at's change to the next pixel across and up
     vec4 shore;       // per corner: 1 on a shore, 0 not, -1 not this triangle's
     float open;       // the brightest corner's brightness: the face's own, unoccluded
+    float height;     // how tall its triangle is, from its lowest corner to its
+                      // highest, in blocks: on a side face, the face's height, as
+                      // either triangle of a side spans it. 1 where unknown
 };
 
 // The corners of a face, in the order its vertices come in.
 const vec2 WATER_CORNERS[4] = vec2[4](vec2(0.0, 0.0), vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
 
-WaterShore waterShore(vec4 lights, vec4 weights) {
+WaterShore waterShore(vec4 lights, vec4 weights, vec4 heights) {
     WaterShore s;
     float brightest = 0.0;
     vec4 corner = vec4(0.0);
+    float low = 1.0e9, high = -1.0e9;
     for (int k = 0; k < 4; k++) {
         corner[k] = weights[k] > 1.0e-3 ? lights[k] / weights[k] : 0.0;
         brightest = max(brightest, corner[k]);
+        if (weights[k] > 1.0e-3) {
+            low = min(low, heights[k] / weights[k]);
+            high = max(high, heights[k] / weights[k]);
+        }
     }
+    s.height = high > low ? high - low : 1.0;
     s.at = vec2(0.0);
     for (int k = 0; k < 4; k++) {
         s.at += weights[k] * WATER_CORNERS[k];
@@ -279,15 +288,17 @@ WaterLook waterLook(int kind, FluidFrame f, float time, WaterShore shore) {
     vec2 flow = vec2(dot(v, axisU), dot(v, axisV));
     bool flowing = kind == WATER_FLOWING && dot(flow, flow) > 0.0;
     ivec2 way = flowing ? fluidWay(flow) : ivec2(0);
-    int steps = top ? WATER_FLOW_STEPS : WATER_FALL_STEPS;
     mat2 along = fluidAlong(way);
-    // how steep its top runs: calm up to about two levels' drop over a block
-    // (a normal's y of 0.976; a level's drop, 0.994 - 0.988 across a
-    // corner), steep from about four (0.91); falls are
-    float steep = top ? 1.0 - smoothstep(0.92, 0.98, abs(n.y)) : 1.0;
+    // how steep it runs: its top calm up to about two levels' drop over a
+    // block (a normal's y of 0.976; a level's drop, 0.994 - 0.988 across a
+    // corner), steep from about four (0.91). Its sides are falls only where
+    // they're a whole block tall, as falling water's are: the short sides of
+    // water sloping down to a lower block are calm
+    float steep = top ? 1.0 - smoothstep(0.92, 0.98, abs(n.y)) : smoothstep(0.92, 0.97, shore.height);
+    int steps = top || steep < 0.5 ? WATER_FLOW_STEPS : WATER_FALL_STEPS;
     // its patterns drawn out along it - but not where it's calm, which looks
     // as still water does, only moving
-    vec2 stretch = flowing ? vec2(!top ? 0.25 : steep < 0.5 ? 1.0 : 0.5, 1.0) : vec2(1.0);
+    vec2 stretch = flowing ? vec2(steep < 0.5 ? 1.0 : top ? 0.5 : 0.25, 1.0) : vec2(1.0);
     vec2 here = vec2(dot(world, axisU), dot(world, axisV));
 
     // ---- still water's top: the wind's waves (waterWind), over the layers
@@ -357,7 +368,8 @@ WaterLook waterLook(int kind, FluidFrame f, float time, WaterShore shore) {
     if (flowing) {
         // (a little where calm, nearly half as it turns steep, all of it
         // where it runs as steep as a normal's y of 0.75)
-        float amount = top ? WATER_FOAM * (0.15 + 0.25 * steep + 0.6 * (1.0 - smoothstep(0.75, 0.95, abs(n.y)))) : WATER_FALL_FOAM;
+        float amount = top ? WATER_FOAM * (0.15 + 0.25 * steep + 0.6 * (1.0 - smoothstep(0.75, 0.95, abs(n.y))))
+                           : mix(WATER_FOAM * 0.15, WATER_FALL_FOAM, steep);
         float streaks = fluidNoise(c, vec2(1.0, 4.0) * stretch, pixel, 130) * 0.6 + fluidNoise(c + 7.0, vec2(2.0, 8.0) * stretch, pixel, 131) * 0.4;
         foam = smoothstep(1.0 - amount * 0.75, 1.0 - amount * 0.75 + 0.12, streaks + (fluidNoise(c, vec2(8.0, 16.0), pixel, 134) - 0.5) * 0.12);
     }
@@ -366,8 +378,10 @@ WaterLook waterLook(int kind, FluidFrame f, float time, WaterShore shore) {
         foam = waterWave(here, time, pixel) * WATER_WAVE_OPACITY / WATER_FOAM_OPACITY;
     }
 #endif
-    // (not on flowing water: its streaks are its own)
-    if (!flowing) {
+    // (only on still water's top: flowing water's streaks are its own, and
+    // still water's sides show where it drops away to lower water - its
+    // corners darkened by the block under them, not a shore)
+    if (!flowing && top) {
         float away = waterAway(shore, f, shift);
         // a band along the shore, its edge lapping in and out, and a thin
         // line of foam beyond it, washing in and out on its own swell

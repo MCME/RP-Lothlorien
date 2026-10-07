@@ -27,6 +27,7 @@ flat in vec4 texRect;
 in vec3 fluidWorld;
 in vec4 waterLights;
 in vec4 waterWeights;
+in vec4 waterHeights;
 // BEGIN COMMENTED 1.21.4 BLOCK-LIGHTING VARYINGS
 // flat in float baseBrightness;
 // flat in float aoIntensity;
@@ -147,7 +148,7 @@ void main() {
     // the fluids: which one this face is, if any, and where on it - taken
     // before branching, as it needs derivatives
     FluidFrame fluidHere = fluidFrame(fluidWorld, Pos, texCoord);
-    WaterShore shore = waterShore(waterLights, waterWeights);
+    WaterShore shore = waterShore(waterLights, waterWeights, waterHeights);
 #ifdef MCME_LITE
     int fluid = -1;     // the Lite zip: fluids as their textures
 #else
