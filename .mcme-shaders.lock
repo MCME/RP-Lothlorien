@@ -1,5 +1,5 @@
 {
-  "base": "008c10e",
+  "base": "727a787",
   "modules": [],
   "files": {
     "assets/minecraft/shaders/core/lightmap.fsh": "ad66edcfd01c6759b17c8ea5a0b52e845e5e3a3f4512c435c13714cad5de63f5",
@@ -17,13 +17,18 @@
     "assets/minecraft/shaders/include/objmc_main.glsl": "43df8df68600fc9697a689b904990ce246955a18bb45c94139bbbc7bba510623",
     "assets/minecraft/shaders/include/objmc_tools.glsl": "99a43b4b6d8f4aecbef6fdde3928dc00932c82ad2c1c3349ddda48ac40f99dc0",
     "assets/minecraft/shaders/include/water.glsl": "9cdc826c58f70973c290790b0e5affd8aa16a32ce05408fcc621c94547fcdb59",
-    "assets/minecraft/shaders/include/water_config.glsl": "f5f352bf5828484dafd72df7b52faf918cafcbfc45a20d634bb4cdc14ca373fe",
+    "assets/minecraft/shaders/include/water_config.glsl": "727cbdb2d9663b672c0f0d4c23598c74c76de4eaabc1c84a988ead77007dabf9",
     "assets/minecraft/shaders/include/water_corner.glsl": "2b4bcd117bb485e5c8a06d391d343dd4385d403070899f610c6f9f5dec792375",
     "assets/sodium/shaders/blocks/block_layer_opaque.fsh": "cb4d26260604b25bc6d6dfd3cccff5a260039af9dd6b588e5528e10cbc437a73",
     "assets/sodium/shaders/blocks/block_layer_opaque.vsh": "206bd098d2d5461e15891ca3306fb61fa5b3774fe3bbb2607b25f2d48c3f59f8",
     "assets/sodium/shaders/include/chunk_material.glsl": "456e00dc7904a2e003fe4e1f06b2023bc3189cb7259fec77ba3e854fc4f7a452",
     "assets/sodium/shaders/include/chunk_vertex.glsl": "812e06bbd4069e7879ff1be91843d38a38850fca37947090fde74e1844a256a3",
     "assets/sodium/shaders/include/fog.glsl": "48bf6249e3e8131e67504f4147122041efa871be20725525744f7c717e8898b4",
-    "assets/sodium/shaders/include/globals.glsl": "59ab558e82d31ea2a0a2b2d95b6a63e4cf960d676cc73c309b7c17e47d02d057"
+    "assets/sodium/shaders/include/globals.glsl": "59ab558e82d31ea2a0a2b2d95b6a63e4cf960d676cc73c309b7c17e47d02d057",
+    "mc26_3/assets/minecraft/shaders/core/terrain.fsh": "97b527e58945c9693abfee2a31b537b330d61623b5e8360ee470674641e10a6e",
+    "mc26_3/assets/minecraft/shaders/core/terrain.vsh": "2926d8bc3657f66dcf57c804fe5db485b060f81d62fdd43acc606071f985d1e0",
+    "mc26_3/assets/sodium/shaders/blocks/block_layer_opaque.fsh": "50b0b51cb2ce9a8abffddc0797a48df3517d4d491b17441684dc6d43a067c0fa",
+    "mc26_3/assets/sodium/shaders/blocks/block_layer_opaque.vsh": "c6a459dfc89e11d3dc5ad0aa6aa36c54f676ee1505ebb734192e0ab2f3bb1039",
+    "mc26_3/assets/sodium/shaders/include/chunk_vertex.glsl": "58f051273c13a4eab5658ff74a1e9725b419bbe92b3b1461520ac675a17fd5e1"
   }
 }
