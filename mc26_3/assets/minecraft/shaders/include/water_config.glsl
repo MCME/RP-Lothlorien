@@ -1,3 +1,6 @@
+// 26.3's copy of assets/minecraft/shaders/include/water_config.glsl, translated by ResourcePackScripts' shader_base.py: don't edit it.
+#ifndef MCME_WATER_CONFIG_GLSL
+#define MCME_WATER_CONFIG_GLSL
 // The water's settings (water.glsl). See water.glsl for what it is.
 
 #define WATER_PIXEL (1.0 / 16.0)     // its pixels' size, in blocks, as a 16px texture's
@@ -68,3 +71,4 @@
 #define WATER_WAVE_TRAVEL 4.0        // how far each crosses, in blocks (under WATER_WAVE_SPACING)
 #define WATER_WAVE_TRAIL 1.6         // how long the trail behind it is, in blocks
 #define WATER_WAVE_OPACITY 0.75      // how opaque its foam is at most
+#endif

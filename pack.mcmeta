@@ -18,5 +18,14 @@
       "terrain.fsh",
       "terrain.vsh"
     ]
+  },
+  "overlays": {
+    "entries": [
+      {
+        "min_format": 97,
+        "max_format": 97,
+        "directory": "mc26_3"
+      }
+    ]
   }
 }
